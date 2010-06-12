@@ -1,7 +1,7 @@
 autoload colors; colors;
 
 export EDITOR='mate -w'
-export PATH="~/bin:/usr/local/homebrew/bin:/usr/local/bin:/usr/local/sbin:/usr/local/mysql/bin:/usr/local/git/bin:/opt/local/bin:/opt/local/sbin:$PATH"
+export PATH="/Applications/Mkvtoolnix.app/Contents/MacOS/:~/bin:/usr/local/homebrew/bin:/usr/local/bin:/usr/local/sbin:/usr/local/mysql/bin:/usr/local/git/bin:/opt/local/bin:/opt/local/sbin:$PATH"
 export MANPATH="/usr/local/man:/usr/local/mysql/man:/usr/local/git/man:$MANPATH"
 export LSCOLORS="ExFxCxDxBxEgEdabagacad"
 export PAGER='less'
