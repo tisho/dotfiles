@@ -192,8 +192,6 @@ set smartcase
 " Tags
 let g:Tlist_Ctags_Cmd="ctags --exclude='*.js'"
 
-let g:fuf_splitPathMatching=1
-
 " Disable visual bell
 set visualbell t_vb=
 
