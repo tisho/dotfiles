@@ -167,11 +167,6 @@ if executable("ack")
   set grepprg=ack\ -H\ --nogroup\ --nocolor
 endif
 
-" Color scheme
-" colorscheme slate
-" highlight NonText guibg=#060606
-" highlight Folded  guibg=#0A0A0A guifg=#9090D0
-
 " Numbers
 set number
 set numberwidth=5
@@ -244,3 +239,12 @@ map <D-8> 8gt
 map <D-9> 9gt
 map <D-0> :tablast<CR>
 
+" Jump to a specific buffer by pressing F5 + Number/Filename
+map <F5> :ls<CR>:b<Space>
+
+" NERDTree mappings
+silent! nmap <silent> <Leader>p :NERDTreeToggle<CR>
+nnoremap <silent> <C-f> :NERDTreeFind<CR> 
+
+" Bufexplorer mappings
+nnoremap <leader>bb :BufExplorer<CR>

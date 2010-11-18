@@ -1,6 +1,7 @@
 set guioptions-=T " hide toolbar
-set lines=55 columns=100
 
-colorscheme railscasts
-
-set guifont=DejaVu\ Sans\ Mono:h13
+" Change peepopen's keymapping to Cmd+T
+if has("gui_macvim")
+  macmenu &File.New\ Tab key=<Nop>
+  map <D-t> <Plug>PeepOpen
+end
