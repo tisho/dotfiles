@@ -1,6 +1,6 @@
 autoload colors; colors;
 
-export EDITOR='mate -w'
+export EDITOR='mvim --remote-tab-wait-silent'
 export PATH="~/bin:/usr/local/homebrew/bin:/usr/local/bin:/usr/local/sbin:/usr/local/mysql/bin:/usr/local/git/bin:/opt/local/bin:/opt/local/sbin:$PATH"
 export MANPATH="/usr/local/man:/usr/local/mysql/man:/usr/local/git/man:$MANPATH"
 export LSCOLORS="ExFxCxDxBxEgEdabagacad"

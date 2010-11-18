@@ -9,10 +9,15 @@ set backspace=indent,eol,start
 
 set nobackup
 set nowritebackup
-set history=50		" keep 50 lines of command line history
+set hidden
+set history=1000		" keep 50 lines of command line history
 set ruler		" show the cursor position all the time
 set showcmd		" display incomplete commands
 set incsearch		" do incremental searching
+
+" Load pathogen
+call pathogen#runtime_append_all_bundles()
+call pathogen#helptags()
 
 " Don't use Ex mode, use Q for formatting
 map Q gq
@@ -52,8 +57,11 @@ if has("autocmd")
     \   exe "normal g`\"" |
     \ endif
 
+  " Source the vimrc file after saving it
+  autocmd bufwritepost .vimrc source $MYVIMRC
+  
   augroup END
-
+  
 else
 
   set autoindent		" always set autoindenting on
@@ -110,6 +118,10 @@ map <Leader>e :e <C-R>=expand("%:p:h") . "/" <CR>
 " Normal mode: <Leader>t
 map <Leader>te :tabe <C-R>=expand("%:p:h") . "/" <CR>
 
+" Opens a split/vsplit edit command with the path of the currently edited file filled in
+map <leader>es :sp <C-R>=expand("%:p:h") . "/" <CR>
+map <leader>ev :vsp <C-R>=expand("%:p:h") . "/" <CR>
+
 " Move lines up and down
 map <Leader>> :m +1 <CR>
 map <Leader>< :m -2 <CR>
@@ -156,7 +168,7 @@ if executable("ack")
 endif
 
 " Color scheme
-" colorscheme vividchalk
+" colorscheme slate
 " highlight NonText guibg=#060606
 " highlight Folded  guibg=#0A0A0A guifg=#9090D0
 
@@ -182,5 +194,55 @@ let g:Tlist_Ctags_Cmd="ctags --exclude='*.js'"
 
 let g:fuf_splitPathMatching=1
 
-" Open URL
-command -bar -nargs=1 OpenURL :!open <args>
+" Disable visual bell
+set visualbell t_vb=
+
+" Make <c-l> clear the highlight as well as redraw
+nnoremap <C-L> :nohls<CR><C-L>
+inoremap <C-L> <C-O>:nohls<CR>
+
+if has("gui_running")
+    " tell the term it has 256 colors
+    set t_Co=256
+
+    if has("gui_gnome")
+        set term=gnome-256color
+        set t_Co=256
+        colorscheme ir_dark
+        set guifont=Inconsolata\ Medium\ 12
+    endif
+    if has("gui_mac") || has("gui_macvim")
+        colorscheme ir_black
+        set guifont=Monaco:h12
+        set guioptions-=T " hide toolbar
+        set columns=180
+        set lines=71
+        " make Mac's Option key behave as the Meta key
+        set invmmta
+    endif
+    if has("gui_win32") || has("gui_win32s")
+        set guifont=Consolas:h12
+        set enc=utf-8
+    endif
+endif
+
+" Emulate TextMate-style indentation shortcuts
+nmap <D-[> <<
+nmap <D-]> >>
+vmap <D-[> <gv
+vmap <D-]> >gv
+
+" Tab management shortcuts
+map <D-S-]> gt
+map <D-S-[> gT
+map <D-1> 1gt
+map <D-2> 2gt
+map <D-3> 3gt
+map <D-4> 4gt
+map <D-5> 5gt
+map <D-6> 6gt
+map <D-7> 7gt
+map <D-8> 8gt
+map <D-9> 9gt
+map <D-0> :tablast<CR>
+
