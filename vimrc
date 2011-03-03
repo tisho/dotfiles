@@ -34,6 +34,9 @@ if (&t_Co > 2 || has("gui_running")) && !exists("syntax_on")
   set hlsearch
 endif
 
+" Set encoding
+set encoding=utf-8
+
 " Only do this part when compiled with support for autocommands.
 if has("autocmd")
 
@@ -210,6 +213,7 @@ let g:snippetsEmu_key = "<S-Tab>"
 " (only complete to the longest unambiguous match, and show a menu)
 set completeopt=longest,menu
 set wildmode=list:longest,list:full
+set wildignore+=*.o,*.obj,.git,*.rbc
 set complete=.,t
 
 " case only matters with mixed case expressions
@@ -356,3 +360,6 @@ nmap <C-W>a <Plug>Kwbd
 " Directories for swp files
 set backupdir=~/.vim/backup
 set directory=~/.vim/backup
+
+" MacVIM shift+arrow-keys behavior (required in .vimrc)
+let macvim_hig_shift_movement = 1
