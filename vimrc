@@ -283,7 +283,7 @@ silent! nmap <silent> <Leader>p :NERDTreeToggle<CR>
 nnoremap <silent> <C-f> :NERDTreeFind<CR> 
 
 " Bufexplorer mappings
-nnoremap <leader>bb :BufExplorer<CR>
+nnoremap <leader>, :BufExplorer<CR>
 
 " Map Ctrl+h/j/k/l to move between windows
 map <C-h> <C-w>h
