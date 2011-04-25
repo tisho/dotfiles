@@ -13,7 +13,6 @@ set nowritebackup
 set hidden
 set history=1000
 set ruler   " show the cursor position all the time
-set cursorline " highlight current line
 set showcmd   " display incomplete commands
 set incsearch   " do incremental searching
 
@@ -77,13 +76,13 @@ else
 
 endif " has("autocmd")
 
-" if has("folding")
-  " set foldenable
-  " set foldmethod=syntax
-  " set foldlevel=1
-  " set foldnestmax=2
-  " set foldtext=strpart(getline(v:foldstart),0,50).'\ ...\ '.substitute(getline(v:foldend),'^[\ #]*','','g').'\ '
-" endif
+if has("folding")
+  set nofoldenable
+  set foldmethod=indent
+  set foldlevel=1
+  set foldnestmax=3
+  set foldtext=strpart(getline(v:foldstart),0,50).'\ ...\ '.substitute(getline(v:foldend),'^[\ #]*','','g').'\ '
+endif
 
 " Softtabs, 2 spaces
 set tabstop=2
@@ -249,6 +248,7 @@ if has("gui_running")
         set guioptions-=T " hide toolbar
         set columns=180
         set lines=71
+        set cursorline " highlight current line
         " make Mac's Option key behave as the Meta key
         set invmmta
     endif
@@ -301,7 +301,7 @@ map <C-l> <C-w>l
 map <Leader>z :ZoomWin<CR>
 
 " Delete the buffer; keep windows; create a scratch buffer if no buffers left
-function s:Kwbd(kwbdStage)
+function! s:Kwbd(kwbdStage)
   if(a:kwbdStage == 1)
     if(!buflisted(winbufnr(0)))
       bd!
@@ -372,6 +372,9 @@ let macvim_hig_shift_movement = 1
 
 " Strip all trailing whitespace
 nnoremap <leader>W :%s/\s\+$//<cr>:let @/=''<CR>
+
+" Remove the Windows ^M - when the encodings gets messed up
+noremap <Leader>m mmHmt:%s/<C-V><cr>//ge<cr>'tzt'm
 
 " Reselect pasted text
 nnoremap <leader>V V`]
