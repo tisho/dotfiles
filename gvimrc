@@ -10,6 +10,9 @@ if has("gui_macvim")
 
   " Command-/ to toggle comments
   map <D-/> <plug>NERDCommenterToggle<CR>  
+
+  " Remove scrollbars
+  set guioptions-=r
 end
 
 " Project Tree

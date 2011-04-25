@@ -13,8 +13,13 @@ set nowritebackup
 set hidden
 set history=1000
 set ruler   " show the cursor position all the time
+set cursorline " highlight current line
 set showcmd   " display incomplete commands
 set incsearch   " do incremental searching
+
+" Saner regexps while searching
+nnoremap / /\v
+vnoremap / /\v
 
 " Load pathogen
 call pathogen#runtime_append_all_bundles()
@@ -111,7 +116,7 @@ au BufRead,BufNewFile *.txt call s:setupWrapping()
 
 " Show trailing whitespace
 "set list listchars=tab:\ \ ,trail:·
-set list listchars=tab:\ \ 
+set list listchars=tab:▸\ 
 
 " Always display the status line
 set laststatus=2
@@ -185,9 +190,6 @@ imap <C-F> <C-R>=expand("%")<CR>
 " overwriting the default register
 vmap P p :call setreg('"', getreg('0')) <CR>
 
-" Display extra whitespace
-" set list listchars=tab:»·,trail:·
-
 " Edit routes
 command! Rroutes :e config/routes.rb
 command! RTroutes :tabe config/routes.rb
@@ -237,11 +239,12 @@ if has("gui_running")
     if has("gui_gnome")
         set term=gnome-256color
         set t_Co=256
-        colorscheme ir_dark
+        colorscheme solarized
         set guifont=Inconsolata\ Medium\ 12
     endif
     if has("gui_mac") || has("gui_macvim")
-        colorscheme ir_black
+        set background=light
+        colorscheme solarized
         set guifont=Monaco:h12
         set guioptions-=T " hide toolbar
         set columns=180
@@ -277,6 +280,9 @@ map <D-0> :tablast<CR>
 
 " Jump to a specific buffer by pressing F5 + Number/Filename
 map <F5> :ls<CR>:b<Space>
+
+" Toggle solarize background
+call togglebg#map("<F6>")
 
 " NERDTree mappings
 silent! nmap <silent> <Leader>p :NERDTreeToggle<CR>
@@ -363,3 +369,9 @@ set directory=~/.vim/backup
 
 " MacVIM shift+arrow-keys behavior (required in .vimrc)
 let macvim_hig_shift_movement = 1
+
+" Strip all trailing whitespace
+nnoremap <leader>W :%s/\s\+$//<cr>:let @/=''<CR>
+
+" Reselect pasted text
+nnoremap <leader>V V`]
