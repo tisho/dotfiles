@@ -5,6 +5,13 @@ if has("gui_macvim")
   macmenu &File.New\ Tab key=<Nop>
   map <D-t> <Plug>PeepOpen
 
+  macm Window.Select\ Next\ Tab key=<nop>
+  nmap <D-}> :bnext<CR>
+
+  macm Window.Select\ Previous\ Tab key=<nop>
+  nmap <D-{> :bprev<CR>
+
+
   " Fullscreen takes up entire screen
   set fuoptions=maxhorz,maxvert  
 
@@ -13,6 +20,7 @@ if has("gui_macvim")
 
   " Remove scrollbars
   set guioptions-=r
+  set guioptions-=L
 end
 
 " Project Tree

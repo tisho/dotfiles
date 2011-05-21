@@ -246,6 +246,8 @@ if has("gui_running")
         colorscheme solarized
         set guifont=Monaco:h12
         set guioptions-=T " hide toolbar
+        set guioptions-=r
+        set guioptions-=L
         set columns=180
         set lines=71
         set cursorline " highlight current line
@@ -265,8 +267,6 @@ vmap <D-[> <gv
 vmap <D-]> >gv
 
 " Tab management shortcuts
-map <D-S-]> gt
-map <D-S-[> gT
 map <D-1> 1gt
 map <D-2> 2gt
 map <D-3> 3gt
@@ -378,3 +378,9 @@ noremap <Leader>m mmHmt:%s/<C-V><cr>//ge<cr>'tzt'm
 
 " Reselect pasted text
 nnoremap <leader>V V`]
+
+" Command-T options
+let g:CommandTMaxHeight = 20 
+noremap <leader>b :CommandT<cr>
+noremap <leader>y :CommandTFlush<cr>
+
