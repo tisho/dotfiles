@@ -31,12 +31,14 @@ alias ss='script/server'
 alias sg='script/generate'
 alias a='autotest -rails'
 alias tlog='tail -f log/development.log'
-alias scaffold='script/generate nifty_scaffold'
 alias migrate='rake db:migrate db:test:clone'
 alias remigrate='rake db:migrate && rake db:migrate:redo && rake db:schema:dump db:test:prepare'
 alias rst='touch tmp/restart.txt'
 alias cuc="cucumber -r features"
-alias devlog='tail -f log/development.log'
+
+# bundler
+alias b='bundle'
+alias be='bundle exec'
 
 # commands starting with % for pasting from web
 alias %=' '

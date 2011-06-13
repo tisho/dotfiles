@@ -7,9 +7,6 @@
 [submodule "vim/bundle/vim-cucumber"]
 	path = vim/bundle/vim-cucumber
 	url = git://github.com/tpope/vim-cucumber.git
-[submodule "vim/bundle/snipmate.vim"]
-	path = vim/bundle/snipmate.vim
-	url = git://github.com/msanders/snipmate.vim.git
 [submodule "vim/bundle/vim-haml"]
 	path = vim/bundle/vim-haml
 	url = git://github.com/tpope/vim-haml.git
@@ -70,3 +67,6 @@
 [submodule "vim/bundle/command-t"]
 	path = vim/bundle/command-t
 	url = https://github.com/wincent/Command-T.git
+[submodule "vim/bundle/vim-snipmate"]
+	path = vim/bundle/vim-snipmate
+	url = https://github.com/garbas/vim-snipmate.git
