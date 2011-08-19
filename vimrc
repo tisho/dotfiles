@@ -384,3 +384,6 @@ let g:CommandTMaxHeight = 20
 noremap <leader>b :CommandT<cr>
 noremap <leader>y :CommandTFlush<cr>
 
+" ZenCoding options
+let g:user_zen_leader_key = '\'
+let g:user_zen_expandabbr_key = '<c-e>'
