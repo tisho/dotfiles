@@ -10,6 +10,7 @@ set backspace=indent,eol,start
 
 set nobackup
 set nowritebackup
+set noswapfile
 set hidden
 set history=1000
 set ruler   " show the cursor position all the time
@@ -184,6 +185,9 @@ nmap <F1> <Esc>
 
 " Press ^F from insert mode to insert the current file name
 imap <C-F> <C-R>=expand("%")<CR>
+
+" Insert &rsquo; for proper apostrophes in HTML
+imap <M-"> &rsquo;
 
 " Press Shift+P while in visual mode to replace the selection without
 " overwriting the default register
