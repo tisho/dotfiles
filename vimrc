@@ -242,12 +242,12 @@ if has("gui_running")
     if has("gui_gnome")
         set term=gnome-256color
         set t_Co=256
-        colorscheme solarized
+        colorscheme jellybeans
         set guifont=Inconsolata\ Medium\ 12
     endif
     if has("gui_mac") || has("gui_macvim")
         set background=light
-        colorscheme solarized
+        colorscheme jellybeans
         set guifont=Monaco:h12
         set guioptions-=T " hide toolbar
         set guioptions-=r
@@ -389,5 +389,12 @@ noremap <leader>b :CommandT<cr>
 noremap <leader>y :CommandTFlush<cr>
 
 " ZenCoding options
-let g:user_zen_leader_key = '\'
+"let g:user_zen_leader_key = '\'
 let g:user_zen_expandabbr_key = '<c-e>'
+
+if exists(":Tabularize")
+  nmap <Leader>a= :Tabularize /=<CR>
+  vmap <Leader>a= :Tabularize /=<CR>
+  nmap <Leader>a: :Tabularize /:\zs<CR>
+  vmap <Leader>a: :Tabularize /:\zs<CR>
+endif
