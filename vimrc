@@ -116,7 +116,7 @@ au BufRead,BufNewFile *.txt call s:setupWrapping()
 
 " Show trailing whitespace
 "set list listchars=tab:\ \ ,trail:·
-set list listchars=tab:▸\ 
+set list listchars=tab:·\ 
 
 " Always display the status line
 set laststatus=2
@@ -211,9 +211,6 @@ endif
 set number
 set numberwidth=5
 
-" Snippets are activated by Shift+Tab
-let g:snippetsEmu_key = "<S-Tab>"
-
 " Tab completion options
 " (only complete to the longest unambiguous match, and show a menu)
 set completeopt=longest,menu
@@ -284,9 +281,6 @@ map <D-0> :tablast<CR>
 
 " Jump to a specific buffer by pressing F5 + Number/Filename
 map <F5> :ls<CR>:b<Space>
-
-" Toggle solarize background
-call togglebg#map("<F6>")
 
 " NERDTree mappings
 silent! nmap <silent> <Leader>p :NERDTreeToggle<CR>
@@ -392,9 +386,13 @@ noremap <leader>y :CommandTFlush<cr>
 "let g:user_zen_leader_key = '\'
 let g:user_zen_expandabbr_key = '<c-e>'
 
-if exists(":Tabularize")
-  nmap <Leader>a= :Tabularize /=<CR>
-  vmap <Leader>a= :Tabularize /=<CR>
-  nmap <Leader>a: :Tabularize /:\zs<CR>
-  vmap <Leader>a: :Tabularize /:\zs<CR>
-endif
+nmap <Leader>n= :Tabularize /=<CR>
+vmap <Leader>n= :Tabularize /=<CR>
+nmap <Leader>n: :Tabularize /:\zs<CR>
+vmap <Leader>n: :Tabularize /:\zs<CR>
+
+" CoffeeScript tweaks
+au BufNewFile,BufReadPost *.coffee setl shiftwidth=2 expandtab
+
+" Snipmate settings
+"let g:snipMate['no_match_completion_feedkeys_chars'] = "\<tab>"
