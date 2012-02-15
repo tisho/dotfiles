@@ -26,15 +26,14 @@ alias gsub='git submodule init && git submodule update'
 alias gadd='git add -u && git add . && git status'
 
 # rails
-alias sc='script/console'
-alias ss='script/server'
-alias sg='script/generate'
-alias a='autotest -rails'
+alias sc='rails c'
+alias ss='rails s'
+alias sg='rails g'
 alias tlog='tail -f log/development.log'
 alias migrate='rake db:migrate db:test:clone'
 alias remigrate='rake db:migrate && rake db:migrate:redo && rake db:schema:dump db:test:prepare'
 alias rst='touch tmp/restart.txt'
-alias cuc="cucumber -r features"
+alias cuc="cucumber"
 
 # bundler
 alias b='bundle'

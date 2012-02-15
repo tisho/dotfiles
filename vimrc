@@ -109,10 +109,30 @@ function! s:setupMarkup()
   map <buffer> <Leader>p :Mm <CR>
 endfunction
 
+" Thorfile, Rakefile, Vagrantfile and Gemfile are Ruby
+au BufRead,BufNewFile {Gemfile,Rakefile,Vagrantfile,Thorfile,config.ru}    set ft=ruby
+
+" add json syntax highlighting
+au BufNewFile,BufRead *.json set ft=javascript
+
 " md, markdown, and mk are markdown and define buffer-local preview
 au BufRead,BufNewFile *.{md,markdown,mdown,mkd,mkdn} call s:setupMarkup()
 
 au BufRead,BufNewFile *.txt call s:setupWrapping()
+
+command! -nargs=* Wrap set wrap linebreak nolist
+
+" Map Cmd + j/k/4/6/0 for display line movements
+vmap <D-j> gj
+vmap <D-k> gk
+vmap <D-4> g$
+vmap <D-6> g^
+vmap <D-0> g^
+nmap <D-j> gj
+nmap <D-k> gk
+nmap <D-4> g$
+nmap <D-6> g^
+nmap <D-0> g^
 
 " Show trailing whitespace
 "set list listchars=tab:\ \ ,trail:·
@@ -168,7 +188,7 @@ map <Leader>< :m -2 <CR>
 cmap <C-P> <C-R>=expand("%:p:h") . "/" <CR>
 
 " Maps autocomplete to tab
-imap <Tab> <C-N>
+"imap <Tab> <C-N>
 
 " Duplicate a selection
 " Visual mode: D
@@ -218,6 +238,10 @@ set wildmode=list:longest,list:full
 set wildignore+=*.o,*.obj,.git,*.rbc
 set complete=.,t
 
+" Supertab options
+let g:SuperTabLongestHighlight = 1
+let g:SuperTabLongestEnhanced = 1
+
 " case only matters with mixed case expressions
 set ignorecase
 set smartcase
@@ -250,7 +274,7 @@ if has("gui_running")
         set guioptions-=r
         set guioptions-=L
         set columns=180
-        set lines=71
+        set lines=999 columns=999
         set cursorline " highlight current line
         " make Mac's Option key behave as the Meta key
         set invmmta
@@ -285,6 +309,10 @@ map <F5> :ls<CR>:b<Space>
 " NERDTree mappings
 silent! nmap <silent> <Leader>p :NERDTreeToggle<CR>
 nnoremap <silent> <C-f> :NERDTreeFind<CR> 
+
+" NERDTree options
+let NERDTreeMinimalUI=1
+let NERDTreeDirArrows=1
 
 " Bufexplorer mappings
 nnoremap <leader>, :BufExplorer<CR>
@@ -379,7 +407,7 @@ nnoremap <leader>V V`]
 
 " Command-T options
 let g:CommandTMaxHeight = 20 
-noremap <leader>b :CommandT<cr>
+noremap <leader>F :CommandT<cr>
 noremap <leader>y :CommandTFlush<cr>
 
 " ZenCoding options

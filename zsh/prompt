@@ -1,23 +1,9 @@
-git_info_for_prompt() {
-  head_info=$(git symbolic-ref HEAD 2> /dev/null)
-  
-  if [[ $head_info =~ '^refs*' ]]; then
-    branch_name=$head_info[(ws:/:)-1]
-    printf "%s" "$GIT_PROMPT_PREFIX$branch_name$(parse_git_dirty)$GIT_PROMPT_SUFFIX"
-  fi
-}
+#local smiley="%(?,%{$fg[green]%}☺%{$reset_color%},%{$fg[red]%}☹%{$reset_color%})"
+#local smiley="%(?,%{%F{010}%}☺%{%f%},%{$fg[red]%}☹%{$reset_color%})"
+local smiley="%(?,%{%F{010}%}⊚%{%f%},%{$fg[red]%}⊚%{$reset_color%})"
 
-parse_git_dirty () {
-  output=$(git diff-files --exit-code --quiet)
-  if [[ $? == 0 ]]; then
-    echo "$GIT_PROMPT_CLEAN"
-  else
-    echo "$GIT_PROMPT_DIRTY"
-  fi
-}
+PROMPT='
+%~
+${smiley} %{$reset_color%}'
 
-if [[ -n $SSH_CONNECTION ]]; then
-  export PS1='%m:%3~$(git_info_for_prompt)%# '
-else
-  export PS1='%3~$(git_info_for_prompt)%# '
-fi
+RPROMPT='%{$fg[grey]%} $(~/.rvm/bin/rvm-prompt)$(~/bin/git-cwd-info.rb)%{$reset_color%}'
