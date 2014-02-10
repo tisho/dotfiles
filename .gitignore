@@ -1,2 +1,4 @@
 vim/sessions/
 vim/backup/
+.DS_Store
+vim/bundle/
