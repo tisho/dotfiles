@@ -1,0 +1,76 @@
+set nofoldenable
+set nospell
+
+if has("gui_mac") || has("gui_macvim")
+    set guifont=Inconsolata\ for\ Powerline:h16
+    set guioptions-=r
+    set guioptions-=L
+    set columns=180
+    set lines=999 columns=999
+endif
+
+" Sketch plugin files and jstalk files are just javascript
+au BufNewFile,BufRead *.jstalk,*.sketchplugin set ft=javascript
+
+" Thorfile, Rakefile, Vagrantfile and Gemfile are Ruby
+au BufNewFile,BufRead {Gemfile,Rakefile,Vagrantfile,Thorfile,config.ru} set ft=ruby
+
+" JSON is javascript
+au BufNewFile,BufRead *.json set ft=javascript
+
+" Snipmate config
+let g:snips_author = 'Tisho Georgiev <tihomir.georgiev@gmail.com>'
+
+" Use Cmd-0/Cmd-9 to move between buffers
+nmap <D-0> :bnext<CR>
+nmap <D-9> :bprev<CR>
+
+" Softtabs, 2 spaces
+set tabstop=2
+set shiftwidth=2
+set softtabstop=2
+
+" Duplicate a selection
+" Visual mode: D
+vmap D y'>p
+
+" Bufexplorer mappings
+nnoremap <leader>m :BufExplorer<CR>
+
+" Command-/ to toggle comments
+map <D-/> <plug>NERDCommenterToggle<CR>
+
+" Insert &rsquo; for proper apostrophes in HTML
+imap <M-"> &rsquo;
+
+" Emulate TextMate-style indentation shortcuts
+nmap <D-[> <<
+nmap <D-]> >>
+vmap <D-[> <gv
+vmap <D-]> >gv
+
+" Jump to a specific buffer by pressing F5 + Number/Filename
+map <F5> :ls<CR>:b
+
+" NERDTree mappings
+silent! nmap <silent> <Leader>p :NERDTreeToggle<CR>
+nnoremap <silent> <C-f> :NERDTreeFind<CR>
+
+" NERDTree options
+let NERDTreeMinimalUI=1
+let NERDTreeDirArrows=1
+
+" Strip all trailing whitespace
+nnoremap <leader>W :%s/\s\+$//<cr>:let @/=''<CR>
+
+" Remove the Windows ^M - when the encodings gets messed up
+" "noremap <Leader>m mmHmt:%s/<C-V><cr>//ge<cr>'tzt'm
+
+" Reselect pasted text
+nnoremap <leader>V V`]
+
+" Sane mappings for moving between windows
+map <C-J> <C-W>j
+map <C-K> <C-W>k
+map <C-L> <C-W>l
+map <C-H> <C-W>h
