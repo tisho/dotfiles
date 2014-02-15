@@ -1,2 +1,3 @@
 Bundle 'jlanzarotta/bufexplorer'
 Bundle 'mustache/vim-mustache-handlebars'
+Bundle 'Shougo/neosnippet-snippets'

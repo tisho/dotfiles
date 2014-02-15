@@ -2,12 +2,23 @@ set nofoldenable
 set nospell
 
 if has("gui_mac") || has("gui_macvim")
-    set guifont=Inconsolata\ for\ Powerline:h16
-    set guioptions-=r
-    set guioptions-=L
-    set columns=180
-    set lines=999 columns=999
+  set guifont=Inconsolata\ for\ Powerline:h16
+  set guioptions-=r
+  set guioptions-=L
+  set columns=180
+  set lines=999 columns=999
 endif
+
+" Remove annoying timeout on escape
+set ttimeoutlen=10
+augroup FastEscape
+  autocmd!
+  au InsertEnter * set timeoutlen=0
+  au InsertLeave * set timeoutlen=1000
+augroup END
+
+" Disable visual/audio bell
+set vb t_vb=
 
 " Sketch plugin files and jstalk files are just javascript
 au BufNewFile,BufRead *.jstalk,*.sketchplugin set ft=javascript
@@ -20,6 +31,9 @@ au BufNewFile,BufRead *.json set ft=javascript
 
 " Snipmate config
 let g:snips_author = 'Tisho Georgiev <tihomir.georgiev@gmail.com>'
+
+" CtrlP shortcut
+nnoremap <silent> <D-O> :CtrlP<CR>
 
 " Use Cmd-0/Cmd-9 to move between buffers
 nmap <D-0> :bnext<CR>
@@ -59,6 +73,8 @@ nnoremap <silent> <C-f> :NERDTreeFind<CR>
 " NERDTree options
 let NERDTreeMinimalUI=1
 let NERDTreeDirArrows=1
+let NERDTreeIgnore=['\.DS_Store$', '\.vim$']
+let NERDTreeQuitOnOpen=0
 
 " Strip all trailing whitespace
 nnoremap <leader>W :%s/\s\+$//<cr>:let @/=''<CR>
