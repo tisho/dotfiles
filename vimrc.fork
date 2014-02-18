@@ -1,3 +1,6 @@
+UnBundle 'gorodinskiy/vim-coloresque'
+UnBundle 'scrooloose/syntastic'
+
 set nofoldenable
 set nospell
 
@@ -32,7 +35,10 @@ au BufNewFile,BufRead *.json set ft=javascript
 " Snipmate config
 let g:snips_author = 'Tisho Georgiev <tihomir.georgiev@gmail.com>'
 
-" CtrlP shortcut
+" Esc means esc, even if the omnicomplete popup is visible
+inoremap <expr> <Esc> "\<Esc>"
+
+"CtrlP shortcut
 nnoremap <silent> <D-O> :CtrlP<CR>
 
 " Use Cmd-0/Cmd-9 to move between buffers
@@ -90,3 +96,11 @@ map <C-J> <C-W>j
 map <C-K> <C-W>k
 map <C-L> <C-W>l
 map <C-H> <C-W>h
+
+" Make neosnippet behave like supertab
+imap <expr><TAB> neosnippet#expandable_or_jumpable() ?
+\ "\<Plug>(neosnippet_expand_or_jump)"
+\: pumvisible() ? "\<C-n>" : "\<TAB>"
+smap <expr><TAB> neosnippet#expandable_or_jumpable() ?
+\ "\<Plug>(neosnippet_expand_or_jump)"
+\: "\<TAB>"
