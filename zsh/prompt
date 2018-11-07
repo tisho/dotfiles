@@ -6,4 +6,5 @@ PROMPT='
 %~
 ${smiley} %{$reset_color%}'
 
-RPROMPT='%{$fg[grey]%} $(~/.rvm/bin/rvm-prompt)$(~/bin/git-cwd-info.rb)%{$reset_color%}'
+#RPROMPT='%{$fg[grey]%} $(~/.rvm/bin/rvm-prompt)$(~/.bin/git-cwd-info.rb)%{$reset_color%}'
+RPROMPT='%{$fg[grey]%} $(~/.bin/git-cwd-info.rb)%{$reset_color%}'
